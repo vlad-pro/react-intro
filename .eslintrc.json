@@ -1,10 +1,27 @@
 {
-  "extends": ["eslint:recommended", "prettier", "prettier/react"],
-  "plugins": [],
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:react/recommended", // look into notes.md for a little bit more info on that
+    "plugin:jsx-a11y/recommended",
+    // prettier rules should be at the end because they modify everything. Turning off the rules in linter
+    "prettier",
+    "prettier/react"
+  ],
+  "rules": {
+    "react/prop-types": 0,
+    "no-console": 1
+  },
+  "plugins": ["react", "import", "jsx-a11y"],
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module",
     "ecmaFeatures": { "jsx": true }
   },
-  "env": { "es6": true, "browser": true, "node": true }
+  "env": { "es6": true, "browser": true, "node": true },
+  "settings": {
+    "react":{
+      "version": "detect"
+    }
+  }
 }
