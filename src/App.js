@@ -4,10 +4,13 @@ import SearchParams from "./SearchParams";
 
 const App = () => {
   return (
-    <div>
-      <h1>Adopt me</h1>
-      <SearchParams />
-    </div>
+    // Strict mode is just for future proof the app - give warnings when some depricated fucntion is used
+    <React.StrictMode>
+      <div>
+        <h1>Adopt me</h1>
+        <SearchParams />
+      </div>
+    </React.StrictMode>
   );
 };
 
