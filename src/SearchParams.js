@@ -30,7 +30,8 @@ const SearchParams = () => {
       const breedStrings = apiBreeds.map(({name}) => name)
       setBreeds(breedStrings)
     }, error => console.error(error))
-  }, [setBreed, animal, setBreeds]) // if you want to run effect once, then DependencyList should be [] empty. 
+    // if you want to run effect once, then DependencyList should be [] empty. 
+  }, [setBreed, animal, setBreeds]) 
 
   return (
     <div className="search-params">

@@ -16,8 +16,8 @@ class Carousel extends React.Component {
   handleIndexClick(event) {
     this.setState({
       // event.target.dataset.index comes from the DOM and everyting that comes from the dom is a sting, we need a number here.
-      active: +event.target.dataset.index 
       // unary plus(+) does the same as  the same as parseInt(event.target.dataset.index, 10) and converting a string to a number
+      active: +event.target.dataset.index 
     });
   }
 
