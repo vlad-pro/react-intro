@@ -33,7 +33,7 @@ class Details extends React.Component {
     }, console.error);
   }
 
-  toggleModal() {this.setState({ showModal: !this.state.showModal })};
+  toggleModal = () => {this.setState({ showModal: !this.state.showModal })};
   adopt() {navigate(this.state.url)};
 
   render() {
