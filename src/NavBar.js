@@ -1,11 +1,14 @@
 import React from "react";
 import { Link } from "@reach/router";
-import { css } from "@emotion/css";
+// this comment tells babel to convert jsx to calls to a function called jsx instead of React.createElement
+/** @jsx jsx */
+/** @jsx jsx */
+import { css, jsx } from '@emotion/react'
 
 const NavBar = () => (
   <header
     css={css`
-      background-color: #666;
+      background-color: black;
       padding: 15px;
     `}
   >
