@@ -1,9 +1,10 @@
-import React, {useState} from "react";
+import React, { useState, lazy, Suspense } from "react";
 import { render } from "react-dom";
 import { Link, Router } from "@reach/router";
 import SearchParams from "./SearchParams";
-import Details from "./Details";
-import ThemeContext  from "./ThemeContext";
+import ThemeContext from "./ThemeContext";
+
+const Details = lazy(() => import("./Details"));
 
 const App = () => {
   const themeHook = useState("darkblue");
@@ -17,10 +18,13 @@ const App = () => {
               <h1>Adopt me</h1>
             </Link>
           </header>
-          <Router>
-            <SearchParams path="/" />
-            <Details path="details/:id" />
-          </Router>
+          {/* top level suspense is used in all the child components */}
+          <Suspense fallback={<h1>loading route...</h1>}>
+            <Router>
+              <SearchParams path="/" />
+              <Details path="details/:id" />
+            </Router>
+          </Suspense>
         </div>
       </ThemeContext.Provider>
     </React.StrictMode>

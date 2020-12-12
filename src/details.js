@@ -1,7 +1,7 @@
 import React from "react";
 import pet from "@frontendmasters/pet";
 import { navigate } from "@reach/router";
-import  Modal from "./Modal";
+import Modal from "./Modal";
 import Carousel from "./Carousel";
 import ErrorBoundary from "./ErrorBoundary";
 import ThemeContext from "./ThemeContext";
@@ -14,8 +14,8 @@ class Details extends React.Component {
       loading: true,
       showModal: false,
     };
-    this.toggleModal = this.toggleModal.bind(this)
-    this.adopt = this.adopt.bind(this)
+    this.toggleModal = this.toggleModal.bind(this);
+    this.adopt = this.adopt.bind(this);
   }
   componentDidMount() {
     // throw new Error("error to chek the handling") // can be used to check error boundry handling in components
@@ -33,8 +33,12 @@ class Details extends React.Component {
     }, console.error);
   }
 
-  toggleModal = () => {this.setState({ showModal: !this.state.showModal })};
-  adopt() {navigate(this.state.url)};
+  toggleModal() {
+    this.setState({ showModal: !this.state.showModal });
+  }
+  adopt() {
+    navigate(this.state.url);
+  }
 
   render() {
     if (this.state.loading) {
