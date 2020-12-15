@@ -1,17 +1,16 @@
-import React, { useState, lazy, Suspense } from "react";
+import React from "react";
 import { render } from "react-dom";
 import { Link, Router } from "@reach/router";
 import SearchParams from "./SearchParams";
-import ThemeContext from "./ThemeContext";
-
-const Details = lazy(() => import("./Details"));
+import Details from "./Details";
+import { Provider } from "react-redux";
+import store from "./store";
 
 const App = () => {
-  const themeHook = useState("darkblue");
   return (
     // Strict mode is just for future proof the app - give warnings when some depricated fucntion is used
     <React.StrictMode>
-      <ThemeContext.Provider value={themeHook}>
+      <Provider store={store}>
         <div>
           <header>
             <Link to="/">
@@ -19,14 +18,12 @@ const App = () => {
             </Link>
           </header>
           {/* top level suspense is used in all the child components */}
-          <Suspense fallback={<h1>loading route...</h1>}>
-            <Router>
-              <SearchParams path="/" />
-              <Details path="details/:id" />
-            </Router>
-          </Suspense>
+          <Router>
+            <SearchParams path="/" />
+            <Details path="details/:id" />
+          </Router>
         </div>
-      </ThemeContext.Provider>
+      </Provider>
     </React.StrictMode>
   );
 };

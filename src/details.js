@@ -1,10 +1,12 @@
 import React from "react";
 import pet from "@frontendmasters/pet";
 import { navigate } from "@reach/router";
+import { connect } from "react-redux";
 import Modal from "./Modal";
 import Carousel from "./Carousel";
 import ErrorBoundary from "./ErrorBoundary";
-import ThemeContext from "./ThemeContext";
+
+
 
 class Details extends React.Component {
   constructor(props) {
@@ -61,19 +63,15 @@ class Details extends React.Component {
         <div>
           <h1>{name}</h1>
           <h2>{`${animal} — ${breed} — ${location}`}</h2>
-          <ThemeContext.Consumer>
-            {(themeHook) => (
-              // themeHook[0] because we are provided the theme and the setTheme function.
-              // These we are getitng from the context that we set in the .Provided in the App.js
-              // This is the example where hooks are a great combo with Contex, even though I do not qite get it.
+          
+
               <button
                 onClick={this.toggleModal}
-                style={{ backgroundColor: themeHook[0] }}
+                style={{ backgroundColor: this.props.theme }}
               >
                 Adopt {name}
               </button>
-            )}
-          </ThemeContext.Consumer>
+            )
           <p>{description}</p>
           {showModal ? (
             <Modal>
@@ -92,10 +90,14 @@ class Details extends React.Component {
   }
 }
 
+const mapStateToProps = ({theme}) => ({theme})
+
+const WrappedDetails = connect(mapStateToProps)(Details)
+
 export default function DetailsWithErrorBoundary(props) {
   return (
     <ErrorBoundary>
-      <Details {...props} />
+      <WrappedDetails {...props} />
     </ErrorBoundary>
   );
 }
