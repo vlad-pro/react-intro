@@ -7,6 +7,7 @@ const useDropdown = (label, defaultState, options) => {
     <label htmlFor={id}>
       {label}
       <select
+        data-testid={id}
         value={state}
         id={id}
         onChange={(e) => setState(e.target.value)}
@@ -22,7 +23,7 @@ const useDropdown = (label, defaultState, options) => {
       </select>
     </label>
   );
-  return [state, Dropdown, setState]
+  return [state, Dropdown, setState];
 };
 
 export default useDropdown;
