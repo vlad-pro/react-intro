@@ -12,17 +12,22 @@ const SearchParams = () => {
   const [pets, setPets] = useState([]);
   const [theme, setTheme] = useContext(ThemeContext);
 
-  async function requestPets() {
-    const { animals } = await pet.animals({
+
+  // We have a bit of a problem though. 
+  // Jest expects to be to run this tests synchronously and we're doing async await.
+  // Here we're simulating a submit event to search for pets and then checking it properly called the API
+  //  and then renders the correct animal list length.
+function requestPets() {
+  pet
+    .animals({
       location,
       breed,
-      type: animal,
+      type: animal
+    })
+    .then(({ animals }) => {
+      setPets(animals || []);
     });
-
-    console.log("animals", animals);
-
-    setPets(animals || []);
-  }
+}
 
   useEffect(() => {
     setBreeds([]);

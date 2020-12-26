@@ -1,5 +1,5 @@
 import { readFileSync } from "fs";
-import { path } from "path";
+import  path  from "path";
 import { act } from "@testing-library/react";
 
 const breeds = [
